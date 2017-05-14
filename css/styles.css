@@ -1,0 +1,25 @@
+.mdl-textfield {
+    padding: 18px 0;
+}
+
+.mdl-menu {
+    min-width: 200px;
+}
+
+.mdl-list__item {
+    font-size: 14px;
+}
+
+.mdl-navigation__link .material-icons {
+    margin-right: 10px;
+}
+
+.mdl-dialog--large {
+    width: 500px;
+    max-width: 90%;
+    box-sizing: border-box;
+}
+
+.mdl-textfield {
+    max-width: calc(100% - 64px); /* width of right menu button */
+}
