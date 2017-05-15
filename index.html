@@ -6,6 +6,7 @@
     <title>Material Design Project</title>
     <link rel="stylesheet" href="./vendor/dialog-polyfill-0.4.7/dialog-polyfill.css">
     <link rel="stylesheet" href="./vendor/mdl/material.min.css">
+    <link rel="stylesheet" href="./vendor/ripjar-material-datetime-picker/dist/material-datetime-picker.css">
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
@@ -14,7 +15,7 @@
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
                 <div class="mdl-layout-spacer"></div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+                <div class="search-field mdl-textfield mdl-js-textfield mdl-textfield--expandable
                       mdl-textfield--floating-label mdl-textfield--align-right">
                     <label class="mdl-button mdl-js-button mdl-button--icon"
                            for="fixed-header-drawer-exp">
@@ -63,48 +64,60 @@
             </div>
         </header>
         <div class="mdl-layout__drawer">
-            <nav class="mdl-navigation">
+            <nav class="mdl-navigation" id="left-nav">
                 <span class="mdl-navigation__link">
-                    <i class="material-icons">remove_red_eye</i>
-                    Preview
+                    <i class="material-icons">remove_red_eye</i>Preview
                 </span>
                 <span class="mdl-navigation__link">
-                    <i class="material-icons">person_add</i>
-                    Share
+                    <i class="material-icons">person_add</i>Share
                 </span>
                 <span class="mdl-navigation__link mdl-menu__item--full-bleed-divider">
-                    <i class="material-icons">link</i>
-                    Get link
+                    <i class="material-icons">link</i>Get link
                 </span>
                 <span class="mdl-navigation__link">
-                    <i class="material-icons">content_copy</i>
-                    Make a copy
+                    <i class="material-icons">content_copy</i>Make a copy
                 </span>
                 <span class="mdl-navigation__link mdl-menu__item--full-bleed-divider">
-                    <i class="material-icons">file_download</i>
-                    Download
+                    <i class="material-icons">file_download</i>Download
                 </span>
-                <span class="mdl-navigation__link">
-                    <i class="material-icons">delete</i>
-                    Remove
+                <span class="mdl-navigation__link mdl-menu__item--full-bleed-divider">
+                    <i class="material-icons">delete</i>Remove
                 </span>
             </nav>
         </div>
-        <main class="mdl-layout__content">
-            <div class="page-content"><!-- Content goes here --></div>
-        </main>
     </div>
     <dialog class="mdl-dialog mdl-dialog--large" id="js-collect-job-dialog">
         <h4 class="mdl-dialog__title">Collect job</h4>
-        <div class="mdl-dialog__content">
-        </div>
-        <div class="mdl-dialog__actions">
-            <button type="button" class="mdl-button">Run count query</button>
-            <button type="button" class="mdl-button close">Close</button>
-        </div>
+        <form id="collect-job-form" action="http://738d915a.ngrok.io/schedule" method="post">
+            <div class="mdl-dialog__content">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" name="query">
+                    <label class="mdl-textfield__label">Query</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <select class="mdl-textfield__input" name="language">
+                        <option value="EN">EN</option>
+                        <option value="FR">FR</option>
+                        <option value="RU">RU</option>
+                    </select>
+                    <label class="mdl-textfield__label">Language Code</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" name="date" id="datepicker-input" placeholder="Start date">
+                </div>
+            </div>
+            <div class="mdl-dialog__actions">
+                <button class="mdl-button mdl-js-button mdl-button--primary">Run count query</button>
+                <button type="button" class="mdl-button close">Close</button>
+            </div>
+        </form>
     </dialog>
     <script src="./vendor/dialog-polyfill-0.4.7/dialog-polyfill.js"></script>
     <script src="./vendor/mdl/material.min.js"></script>
+    <script src="./vendor/jsonp/jsonp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/rome/2.1.22/rome.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.js"></script>
+    <script src="./vendor/ripjar-material-datetime-picker/dist/material-datetime-picker.js"></script>
     <script src="./js/scripts.js"></script>
 </body>
 </html>
