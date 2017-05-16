@@ -5,6 +5,9 @@ var rightMenu = document.querySelector('.mdl-js-ripple-effect');
 var leftMenu = document.getElementById('left-nav');
 var materialLayout = document.querySelector('.mdl-js-layout');
 var form = document.getElementById('collect-job-form');
+var datePickerInput = document.getElementById('datepicker-input');
+var datePickerContainer = document.querySelector('.js-datepicker-container');
+var datePickerOpened = false;
 var keyCodes = {
     esc: 27
 };
@@ -16,15 +19,28 @@ function openJobDialog() {
     }
 }
 
+function clickOnDatepicker(event) {
+    var datepickerEl = document.querySelector('.c-datepicker');
+    if (datepickerEl) {
+        var rect = datepickerEl.getBoundingClientRect();
+        return (rect.top <= event.clientY && event.clientY <= rect.top + rect.height
+        && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+    }
+    return false;
+}
+
 function handleDialogs() {
     dialogs.forEach(function(dialog) {
         dialogPolyfill.registerDialog(dialog);
         dialog.addEventListener('click', function clickOnDialogBackdrop(event) {
             var rect = dialog.getBoundingClientRect();
             var isInDialog=(rect.top <= event.clientY && event.clientY <= rect.top + rect.height
-            && rect.left <= event.clientX && event.clientX <= rect.left + rect.width);
+            && rect.left <= event.clientX && event.clientX <= rect.left + rect.width) || clickOnDatepicker(event);
             if (!isInDialog) {
                 dialog.close();
+                if (datePickerOpened) {
+                    datePicker.close();
+                }
             }
         });
     });
@@ -82,16 +98,22 @@ function requestMenus() {
 }
 
 function handleDatePicker() {
-    var datePickerInput = document.getElementById('datepicker-input');
-    datePicker = new MaterialDatetimePicker()
-        .on('submit', function(val) {
-            openJobDialog();
-            datePickerInput.value = val.format("DD/MM/YYYY");
+    datePicker = new MaterialDatetimePicker({
+            container: datePickerContainer
         })
-        .on('close', openJobDialog)
+        .on('open', function() {
+            datePickerOpened = true;
+        })
+        .on('close', function() {
+            datePickerOpened = false;
+        })
+        .on('submit', function(val) {
+            datePickerInput.value = val.format("DD/MM/YYYY");
+        });
     datePickerInput.addEventListener('focus', function() {
-        collectJobDialog.close();
-        datePicker.open();
+        if (!datePickerOpened) {
+            datePicker.open();
+        }
     });
 }
 
