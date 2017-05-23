@@ -60,10 +60,22 @@
 .mdl-button--bordered:hover {
     box-shadow: 0 0 10px 0 rgba(65, 108, 69, 0.5), inset 0 0 10px 0 rgba(65, 108, 69, 0.5);
     background: 0 0;
+    border-color: #549655;
     color: #549655;
 }
 
 .container { /* fake element, just to align button on page */
     text-align: center;
     padding: 50px;
+}
+
+.mdl-button--bordered.mdl-button--red {
+    border: 1px solid #843c46;
+    color: #843c46;
+}
+.mdl-button--bordered.mdl-button--red:hover {
+    box-shadow: 0 0 10px 0 rgba(132, 60, 70, 0.5), inset 0 0 10px 0 rgba(132, 60, 70, 0.5);
+    background: 0 0;
+    border-color: #a73945;
+    color: #a73945;
 }
