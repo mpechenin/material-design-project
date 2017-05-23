@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
-<body>
+<body class="page">
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
@@ -85,6 +85,11 @@
                 </span>
             </nav>
         </div>
+        <main class="mdl-layout__content">
+            <div class="container">
+                <button type="button" class="mdl-button mdl-button--bordered close">Button</button>
+            </div>
+        </main>
     </div>
     <dialog class="mdl-dialog mdl-dialog--large" id="js-collect-job-dialog">
         <h4 class="mdl-dialog__title">Collect job</h4>
@@ -107,8 +112,8 @@
                 </div>
             </div>
             <div class="mdl-dialog__actions">
-                <button class="mdl-button mdl-js-button mdl-button--primary">Run count query</button>
-                <button type="button" class="mdl-button close">Close</button>
+                <button class="mdl-button mdl-button--bordered mdl-js-button mdl-button--primary">Run count query</button>
+                <button type="button" class="mdl-button mdl-button--bordered close">Close</button>
             </div>
         </form>
     </dialog>
